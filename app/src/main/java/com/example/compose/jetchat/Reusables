@@ -1,0 +1,38 @@
+@Composable
+fun MyCanvas(graphData: List<Int>) {
+
+    var animationProgress = remember {
+        androidx.compose.animation.core.Animatable(0f)
+    }
+
+    LaunchedEffect(key1 = graphData) {
+        animationProgress.animateTo(1f, tween(2000))
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
+    )
+    {
+        Spacer(
+            modifier = Modifier
+                .padding(8.dp)
+                .aspectRatio(3 / 2f)
+                .fillMaxSize()
+                .drawWithCache {
+
+                    val path = Path()
+
+                    onDrawBehind {
+                        clipRect(right = size.width * animationProgress.value) {
+                            drawPath(
+                                path, Color.Green,
+                                style = Stroke(2.dp.toPx())
+                            )
+                        }
+
+                    }
+                })
+    }
+}
