@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.util.lerp
@@ -45,13 +44,15 @@ fun AnimatingFabContent(
             }
         },
         label = "fab_text_opacity"
-    ) { state ->
-        if (state== ExpandableFabStates.Collapsed) {
+    ) { proxyTargetState ->
+        /*The role  of this is just for lookups: return the actual targetState */
+        if (proxyTargetState == ExpandableFabStates.Collapsed) {
             0f
         } else {
             1f
         }
     }
+
     val fabWidthFactor by transition.animateFloat(
         transitionSpec = {
             if (targetState == ExpandableFabStates.Collapsed) {
@@ -74,12 +75,12 @@ fun AnimatingFabContent(
             1f
         }
     }
-    // Deferring reads using lambdas instead of Floats here can improve performance,
-    // preventing recompositions.
+
+    /* Deferring reads using lambdas instead of Floats here can improve performance :: preventing recompositions.*/
     IconAndTextRow(
         icon,
         text,
-        { textOpacity },
+        { return@IconAndTextRow textOpacity },
         { fabWidthFactor },
         modifier = modifier
     )

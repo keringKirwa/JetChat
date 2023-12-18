@@ -36,6 +36,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.compose.jetchat.components.JetchatDrawer
 import com.example.compose.jetchat.databinding.ContentMainBinding
+import com.example.compose.jetchat.viewModels.MainViewModel
 import kotlinx.coroutines.launch
 
 /**

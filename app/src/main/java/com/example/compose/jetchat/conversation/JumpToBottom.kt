@@ -11,12 +11,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.jetchat.R
+import kotlinx.coroutines.launch
 
 private enum class Visibility {
     VISIBLE, GONE
@@ -30,12 +33,26 @@ private enum class BoxState {
 /**
  * Shows a button that lets the user scroll to the bottom.
  */
+
 @Composable
 fun JumpToBottom(
     enabled: Boolean,
     onClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    val coroutineScope = rememberCoroutineScope();
+
+    LaunchedEffect(key1 = true) {
+        coroutineScope.launch {
+
+        }
+    }
+
+
+    print(coroutineScope);
+
+
     // Show Jump to Bottom button
     val transition = updateTransition(
         if (enabled) Visibility.VISIBLE else Visibility.GONE,
@@ -47,6 +64,7 @@ fun JumpToBottom(
         } else {
             32.dp
         }
+
     }
     if (bottomOffset > 0.dp) {
         ExtendedFloatingActionButton(

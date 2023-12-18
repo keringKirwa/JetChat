@@ -45,10 +45,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.compose.jetchat.FunctionalityNotAvailablePopup
-import com.example.compose.jetchat.MainViewModel
 import com.example.compose.jetchat.R
 import com.example.compose.jetchat.components.JetchatAppBar
 import com.example.compose.jetchat.theme.JetchatTheme
+import com.example.compose.jetchat.viewModels.MainViewModel
 
 class ProfileFragment : Fragment() {
 
